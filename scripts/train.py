@@ -1,7 +1,7 @@
 import gymnasium as gym
 import datetime
 
-from stable_baselines3 import SAC
+from stable_baselines3 import SAC, PPO
 from stable_baselines3.common.utils import set_random_seed
 from f1tenth_wrapper.env import F1TenthWrapper
 
@@ -12,7 +12,7 @@ set_random_seed(seed)
 
 wandb_config = {
     "policy_type": "MlpPolicy",
-    "total_timesteps": 3000000,
+    "total_timesteps": 1000000,
     "env_id": "f1tenth-RL-v0",
     "seed": seed,
 }
@@ -35,7 +35,11 @@ env = gym.make(
 )
 
 
-model = SAC(
+# model = SAC(
+#     wandb_config["policy_type"], env, verbose=1, tensorboard_log=f"runs/{run_id}"
+# )
+
+model = PPO(
     wandb_config["policy_type"], env, verbose=1, tensorboard_log=f"runs/{run_id}"
 )
 
