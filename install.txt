@@ -1,0 +1,20 @@
+    git clone https://github.com/zhili-zh/f1tenth_rl.git
+
+    conda create --name f1_10_rl python=3.10
+
+Follow the dockerfile gpu version to continue:
+
+    pip3 install --upgrade pip
+    pip3 install -U pip distlib setuptools wheel
+    pip3 install PyOpenGL PyOpenGL_accelerate
+
+Then, install the pygame-dev version first (because f1tenth-gym requires pygame, 
+but pip install pygame will result in an issue which cannot be fixed).
+
+    pip install pygame==2.6.0.dev2
+
+Continue following the Dockerfile
+
+    pip3 install git+https://github.com/kohonda/f1tenth_gym.git
+    pip3 install stable-baselines3[extra]==2.3.0
+    pip3 install -e .[dev]
